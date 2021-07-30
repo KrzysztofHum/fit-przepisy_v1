@@ -27,7 +27,8 @@ body {
 h2,
 h3,
 h4,
-h5 {
+h5,
+h6 {
   margin: 0;
   margin-bottom: 1.38rem;
   font-family: ${({ theme }) => theme.fonts.headingFont[0]};
@@ -55,6 +56,11 @@ h4 {
 
 h5 {
   font-size: 1.25rem;
+}
+
+h6 {
+  margin-bottom: 0;
+  padding: 2px;
 }
 
 button {

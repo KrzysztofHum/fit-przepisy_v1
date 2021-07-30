@@ -1,12 +1,15 @@
 import * as React from "react";
 import styled from "styled-components";
+import AllRecipes from "../components/AllRecipes";
+import Description from "../components/Description";
 import Layout from "../components/Layout";
 
 export default function Home() {
   return (
     <Layout>
       <Main>
-        {/* <AllRecipes /> */}
+        <AllRecipes />
+        <Description/>
       </Main>
     </Layout>
   );

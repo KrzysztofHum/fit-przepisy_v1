@@ -11,6 +11,7 @@ export const theme = {
     border: "#d4d4d4",
   },
   shadows: {
+    shadow: "0px 3px 4px rgb(1 5 43 / 10%), 0px 10px 15px rgb(1 5 43 / 10%)",
     shadow1: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
     shadow2:
       "0 4px 6px -1 rgba(0, 0, 0, 0.1), 0 2px 4px -1 rgba(0, 0, 0, 0.06)",

@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 export default function Description() {
   return (
@@ -46,6 +47,7 @@ export default function Description() {
 }
 
 export const Wrapper = styled.div`
+  margin: 1rem;
   background-color: ${({ theme }) => theme.colors.greyBackground};
   p {
     margin-top: 0;
