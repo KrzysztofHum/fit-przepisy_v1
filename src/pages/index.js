@@ -1,11 +1,12 @@
 import * as React from "react";
 import styled from "styled-components";
+import Layout from "../components/Layout";
 
 export default function Home() {
   return (
     <Layout>
       <Main>
-        <AllRecipes />
+        {/* <AllRecipes /> */}
       </Main>
     </Layout>
   );
@@ -13,7 +14,6 @@ export default function Home() {
 
 
 const Main = styled.main`
-  width: 90vw;
   max-width: 1120px;
   margin: 0 auto;
   min-height: 77vh;

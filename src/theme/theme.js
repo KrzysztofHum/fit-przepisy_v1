@@ -5,8 +5,10 @@ export const theme = {
   },
   colors: {
     primary1: "#94cc39",
-    primary2: "#689C13",
+    primary2: "#8ac256",
+    lightGrey: "#f8f8f8",
     greyBackground: "#f9f9f9",
+    border: "#d4d4d4",
   },
   shadows: {
     shadow1: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
