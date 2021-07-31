@@ -32,7 +32,7 @@ export default function Recipe({ recipes = [] }) {
               </Link>
             </div>
             <div>
-              <Link>
+              <Link to="/produkt">
                 <h3>{title}</h3>
               </Link>
             </div>

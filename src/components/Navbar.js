@@ -1,10 +1,31 @@
+import { graphql, useStaticQuery } from "gatsby";
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImYoutube2, ImFacebook2 } from "react-icons/im";
 import styled from "styled-components";
+import setupCategories from "../utils/setupCategories";
+import setupTags from "../utils/setupTags";
+
+export const query = graphql`
+  {
+    allContentfulProducts {
+      nodes {
+        id
+        tags
+        categories
+      }
+    }
+  }
+`;
 
 export default function Navbar() {
+  const {
+    allContentfulProducts: { nodes: data },
+  } = useStaticQuery(query);
+  const newCategories = setupCategories(data);
+  const newTags = setupTags(data);
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Nav>
       <MidNav>
@@ -24,15 +45,25 @@ export default function Navbar() {
       <SideNav isOpen={isOpen}>
         <ul>
           Kategorie:
-          <li>kat1</li>
-          <li>kat2</li>
-          <li>kat3</li>
+          {newCategories.map((category, index) => {
+            const [text, value] = category;
+            return (
+              <li key={index}>
+                {text} ({value})
+              </li>
+            );
+          })}
         </ul>
         <ul>
           Tagi
-          <li>tag1</li>
-          <li>tag1</li>
-          <li>tag1</li>
+          {newTags.map((tag, index) => {
+            const [text, value] = tag;
+            return (
+              <li key={index}>
+                {text} ({value})
+              </li>
+            );
+          })}
         </ul>
       </SideNav>
     </Nav>
