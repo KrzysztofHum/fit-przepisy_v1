@@ -49,7 +49,7 @@ export default function Navbar() {
             const [text, value] = category;
             return (
               <li key={index}>
-                <Links to={`przepis-na-${text}`}>
+                <Links to={`/przepis-na-${text}`}>
                   {text} ({value})
                 </Links>
               </li>
@@ -62,7 +62,7 @@ export default function Navbar() {
             const [text, value] = tag;
             return (
               <li key={index}>
-                <Links to={`przepis-na-${text}`}>
+                <Links to={`/przepis-na-${text}`}>
                   {text} ({value})
                 </Links>
               </li>

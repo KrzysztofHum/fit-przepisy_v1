@@ -27,14 +27,14 @@ export default function Recipe({ recipes = [] }) {
         return (
           <Article key={id}>
             <div>
-              <Link to={title}>
+              <Links to={title}>
                 <GatsbyImage className="img" image={pathToImage} alt={title} />
-              </Link>
+              </Links>
             </div>
             <div>
-              <Link to={title}>
+              <Links to={title}>
                 <h3>{title}</h3>
-              </Link>
+              </Links>
             </div>
             <div>{description && renderRichText(description, options)}</div>
             <Details>
@@ -98,4 +98,8 @@ const DetailsItem = styled.div`
     color: black;
     font-weight: bold;
   }
+`;
+const Links = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.primary2};
 `;
