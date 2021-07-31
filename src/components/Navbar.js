@@ -76,6 +76,7 @@ const SocialMedia = styled.div`
 `;
 
 const SideNav = styled.div`
+  z-index: 999;
   display: flex;
   flex-direction: column;
   padding: 1rem;

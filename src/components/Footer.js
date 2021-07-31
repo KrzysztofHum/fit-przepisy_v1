@@ -24,8 +24,13 @@ export const Footerr = styled.footer`
   max-width: 1120px;
   text-align: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: #222;
   color: #fff;
+  padding: 1rem;
+  p {
+    margin: 0;
+  }
 `;

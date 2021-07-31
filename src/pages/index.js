@@ -9,12 +9,11 @@ export default function Home() {
     <Layout>
       <Main>
         <AllRecipes />
-        <Description/>
+        <Description />
       </Main>
     </Layout>
   );
 }
-
 
 const Main = styled.main`
   max-width: 1120px;

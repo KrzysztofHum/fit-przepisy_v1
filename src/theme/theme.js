@@ -1,7 +1,7 @@
 export const theme = {
   fonts: {
-    headingFont: ["Inconsolata", "monospace"],
-    bodyFont: ["Montserrat", "sans-serif"],
+    headingFont: ["monospace"],
+    bodyFont: ["sans-serif"],
   },
   colors: {
     primary1: "#94cc39",

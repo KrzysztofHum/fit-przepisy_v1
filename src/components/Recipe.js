@@ -1,59 +1,68 @@
 import { Link } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
+import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import { ImSpoonKnife } from "react-icons/im";
 import { BsDropletFill } from "react-icons/bs";
 import { GiFishEggs, GiSlicedBread } from "react-icons/gi";
-
 import React from "react";
 import styled from "styled-components";
+import { BLOCKS, MARKS } from "@contentful/rich-text-types";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { Bold, Text } from "./Markdown";
 
-export default function Recipe() {
+export default function Recipe({ recipes = [] }) {
+  const options = {
+    renderMark: {
+      [MARKS.BOLD]: (text) => <Bold>{text}</Bold>,
+    },
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+    },
+  };
   return (
-    <Article>
-      <div>
-        <Link>
-          <StaticImage
-            src="../images/gulasz.jpg"
-            alt="fit przepisy"
-            layout="fullWidth"
-            className="img"
-          ></StaticImage>
-        </Link>
-      </div>
-      <div>
-        <Link>
-          <h3>Gulasz po Węgiersku</h3>
-        </Link>
-      </div>
-      <div>
-        <p>
-          Zapraszam na <string>niskokaloryczny gulasz</string> mozna go
-          przygotować jako obiad z kaszą, ziemniakami bądź zjeść z chlebem.{" "}
-        </p>
-      </div>
-      <Details>
-        <DetailsItem>
-          <ImSpoonKnife />
-          <h6>Kalorie</h6>
-          <p>1000</p>
-        </DetailsItem>
-        <DetailsItem>
-          <GiFishEggs />
-          <h6>Białko</h6>
-          <p>1000</p>
-        </DetailsItem>
-        <DetailsItem>
-          <GiSlicedBread />
-          <h6>Węglowodany</h6>
-          <p>1000</p>
-        </DetailsItem>
-        <DetailsItem>
-          <BsDropletFill />
-          <h6>Tłuszcze</h6>
-          <p>25</p>
-        </DetailsItem>
-      </Details>
-    </Article>
+    <>
+      {recipes.map((recipe) => {
+        const { id, title, img, carbs, fat, kcal, protein } = recipe;
+        const description = recipe.description;
+        const pathToImage = getImage(img);
+        return (
+          <Article key={id}>
+            <div>
+              <Link to="/produkt">
+                <GatsbyImage className="img" image={pathToImage} alt={title} />
+              </Link>
+            </div>
+            <div>
+              <Link>
+                <h3>{title}</h3>
+              </Link>
+            </div>
+            <div>{description && renderRichText(description, options)}</div>
+            <Details>
+              <DetailsItem>
+                <ImSpoonKnife />
+                <h6>Kalorie</h6>
+                <p>{kcal}</p>
+              </DetailsItem>
+              <DetailsItem>
+                <GiFishEggs />
+                <h6>Białko</h6>
+                <p>{protein}</p>
+              </DetailsItem>
+              <DetailsItem>
+                <GiSlicedBread />
+                <h6>Węglowodany</h6>
+                <p>{carbs}</p>
+              </DetailsItem>
+              <DetailsItem>
+                <BsDropletFill />
+                <h6>Tłuszcze</h6>
+                <p>{fat}</p>
+              </DetailsItem>
+            </Details>
+          </Article>
+        );
+      })}
+    </>
   );
 }
 
@@ -74,14 +83,19 @@ const Article = styled.article`
 
 const Details = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
 `;
 const DetailsItem = styled.div`
+  color: ${({ theme }) => theme.colors.primary1};
   padding: 0 1rem 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   p {
     margin: 0;
+  }
+  h6 {
+    color: black;
+    font-weight: bold;
   }
 `;
