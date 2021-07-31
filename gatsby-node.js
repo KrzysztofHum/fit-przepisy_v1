@@ -33,13 +33,13 @@ exports.createPages = async ({ graphql, actions }) => {
       allContentfulProducts {
         nodes {
           tags
-		  categories
+          categories
         }
       }
     }
   `);
-  result.data.allContentfulProducts.nodes.forEach((recipe) => {
-    recipe.tags.forEach((tag) => {
+  result.data.allContentfulProducts.nodes.map((recipe) => {
+    recipe.tags.map((tag) => {
       //   const tagSlug = slugify(tag, { lower: true });
       createPage({
         path: `/przepis-na-${tag}`,
@@ -50,16 +50,16 @@ exports.createPages = async ({ graphql, actions }) => {
       });
     });
   });
-//   result.data.allContentfulProducts.nodes.forEach((recipe) => {
-//     recipe.categories.forEach((category) => {
-//       //   const tagSlug = slugify(tag, { lower: true });
-//       createPage({
-//         path: `/przepis-nna-${category}`,
-//         component: path.resolve(`src/templates/category-template.js`),
-//         context: {
-//           category: category,
-//         },
-//       });
-//     });
-//   });
+  result.data.allContentfulProducts.nodes.map((recipe) => {
+    recipe.categories.map((category) => {
+      //   const tagSlug = slugify(tag, { lower: true });
+      createPage({
+        path: `/przepis-na-${category}`,
+        component: path.resolve(`src/templates/category-template.js`),
+        context: {
+          category: category,
+        },
+      });
+    });
+  });
 };
