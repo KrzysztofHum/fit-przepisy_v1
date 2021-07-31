@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImYoutube2, ImFacebook2 } from "react-icons/im";
@@ -49,7 +49,9 @@ export default function Navbar() {
             const [text, value] = category;
             return (
               <li key={index}>
-                {text} ({value})
+                <Links to={`przepis-na-${text}`}>
+                  {text} ({value})
+                </Links>
               </li>
             );
           })}
@@ -60,7 +62,9 @@ export default function Navbar() {
             const [text, value] = tag;
             return (
               <li key={index}>
-                {text} ({value})
+                <Links to={`przepis-na-${text}`}>
+                  {text} ({value})
+                </Links>
               </li>
             );
           })}
@@ -120,6 +124,7 @@ const SideNav = styled.div`
   transition: ${({ theme }) => theme.animations.transition};
   width: 80%;
   ul {
+    font-weight: bold;
     margin: 0;
   }
   li {
@@ -127,4 +132,9 @@ const SideNav = styled.div`
     color: ${({ theme }) => theme.colors.primary2};
     border-bottom: 1px dashed ${({ theme }) => theme.colors.border};
   }
+`;
+
+const Links = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.primary2};
 `;

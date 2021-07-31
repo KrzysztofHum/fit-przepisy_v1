@@ -1,6 +1,5 @@
 export default function setupCategories(data) {
   const allCategories = {};
-  console.log(allCategories);
   data.forEach((item) => {
     item.categories.forEach((category) => {
       if (allCategories[category]) {

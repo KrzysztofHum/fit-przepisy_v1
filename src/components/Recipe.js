@@ -27,12 +27,12 @@ export default function Recipe({ recipes = [] }) {
         return (
           <Article key={id}>
             <div>
-              <Link to="/produkt">
+              <Link to={title}>
                 <GatsbyImage className="img" image={pathToImage} alt={title} />
               </Link>
             </div>
             <div>
-              <Link to="/produkt">
+              <Link to={title}>
                 <h3>{title}</h3>
               </Link>
             </div>
