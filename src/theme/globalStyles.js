@@ -5,10 +5,10 @@ const GlobalStyle = createGlobalStyle`
 ::after,
 ::before {
   box-sizing: border-box;
+
 }
 
 body {
-  margin: 0;
   background: #fafbfc;
   color: #333538;
   /* font-family: "Montserrat", sans-serif; */
@@ -20,7 +20,6 @@ body {
   p {
     margin: 0;
     margin-bottom: 1rem;
-    max-width: 40em;
   }
 
   h1,

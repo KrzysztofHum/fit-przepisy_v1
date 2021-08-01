@@ -45,6 +45,8 @@ export const query = graphql`
   }
 `;
 const Wrapper = styled.div`
+  margin: 0 auto;
+  max-width: 1120px;
   h1 {
     margin: 0.5rem;
     text-align: center;

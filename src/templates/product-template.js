@@ -38,92 +38,96 @@ export default function produkt({ data }) {
   const pathToImage = getImage(img);
   return (
     <Layout>
-      <H1>Jak zrobić fit {title} ?</H1>
-      <Article>
-        <div>
-          <GatsbyImage className="img" image={pathToImage} alt={title} />
-        </div>
-        <Categories>
+      <Wrapper>
+        <h1>Jak zrobić fit {title} ?</h1>
+        <Article>
+          <div>
+            <GatsbyImage className="img" image={pathToImage} alt={title} />
+          </div>
+          <Categories>
+            <ul>
+              {categories.map((category, index) => {
+                return (
+                  <li key={index}>
+                    <Link to={`przepis-na-${category}`}>{category}</Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </Categories>
+          <Details>
+            <DetailsItem>
+              <GiFishEggs />
+              <h6>Białko</h6>
+              <p>{protein}</p>
+            </DetailsItem>
+            <DetailsItem>
+              <GiSlicedBread />
+              <h6>Węglowodany</h6>
+              <p>{carbs}</p>
+            </DetailsItem>
+            <DetailsItem>
+              <BsDropletFill />
+              <h6>Tłuszcze</h6>
+              <p>{fat}</p>
+            </DetailsItem>
+            <DetailsItem>
+              <ImSpoonKnife />
+              <h6>Kalorie</h6>
+              <p>{kcal}</p>
+            </DetailsItem>
+            <DetailsItem>
+              <BsPeople />
+              <h6>Porcje</h6>
+              <p>{serving}</p>
+            </DetailsItem>
+          </Details>
+          <Content>
+            <h2>{title}</h2>
+            <div>
+              <div>{description && renderRichText(description, options)}</div>
+              <MidContent>
+                <Ingredients>
+                  <h4>Składniki</h4>
+                  <ul>
+                    {ingredients.map((item, index) => {
+                      return <li key={index}>{item}</li>;
+                    })}
+                  </ul>
+                </Ingredients>
+                <Instruction>
+                  <h4>Instrukcja</h4>
+                  <ul>
+                    {instruction.map((item, index) => {
+                      return (
+                        <li key={index}>
+                          <InstructionHeader>
+                            <p>Krok {index + 1}</p>
+                            <div></div>
+                          </InstructionHeader>
+                          <p>{item}</p>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </Instruction>
+              </MidContent>
+            </div>
+          </Content>
+        </Article>
+        <Tags>
           <ul>
-            {categories.map((category, index) => {
+            {tags.map((tag, index) => {
               return (
                 <li key={index}>
-                  <Links to={`przepis-na-${category}`}>{category}</Links>
+                  <Links to={`przepis-na-${tag}`}>{tag}</Links>
                 </li>
               );
             })}
           </ul>
-        </Categories>
-        <Details>
-          <DetailsItem>
-            <GiFishEggs />
-            <h6>Białko</h6>
-            <p>{protein}</p>
-          </DetailsItem>
-          <DetailsItem>
-            <GiSlicedBread />
-            <h6>Węglowodany</h6>
-            <p>{carbs}</p>
-          </DetailsItem>
-          <DetailsItem>
-            <BsDropletFill />
-            <h6>Tłuszcze</h6>
-            <p>{fat}</p>
-          </DetailsItem>
-          <DetailsItem>
-            <ImSpoonKnife />
-            <h6>Kalorie</h6>
-            <p>{kcal}</p>
-          </DetailsItem>
-          <DetailsItem>
-            <BsPeople />
-            <h6>Porcje</h6>
-            <p>{serving}</p>
-          </DetailsItem>
-        </Details>
-        <Content>
-          <h2>{title}</h2>
-          <div>
-            <div>{description && renderRichText(description, options)}</div>
-            <Ingredients>
-              <h4>Składniki</h4>
-              <ul>
-                {ingredients.map((item, index) => {
-                  return <li key={index}>{item}</li>;
-                })}
-              </ul>
-            </Ingredients>
-            <Instruction>
-              <h4>Instrukcja</h4>
-              <ul>
-                {instruction.map((item, index) => {
-                  return (
-                    <li key={index}>
-                      <InstructionHeader>
-                        <p>Krok {index + 1}</p>
-                        <div></div>
-                      </InstructionHeader>
-                      <p>{item}</p>
-                    </li>
-                  );
-                })}
-              </ul>
-            </Instruction>
-          </div>
-        </Content>
-      </Article>
-      <Tags>
-        <ul>
-          {tags.map((tag, index) => {
-            return (
-              <li key={index}>
-                <Links to={`przepis-na-${tag}`}>{tag}</Links>
-              </li>
-            );
-          })}
-        </ul>
-      </Tags>
-      <div>Zobacz podobne przepisy</div>
+        </Tags>
+        <div>Zobacz podobne przepisy</div>
+      </Wrapper>
     </Layout>
   );
 }
@@ -153,10 +157,16 @@ export const query = graphql`
     }
   }
 `;
-const H1 = styled.h1`
-  margin: 0.5rem;
-  text-align: center;
+
+const Wrapper = styled.div`
+  margin: 0 auto;
+  max-width: 1120px;
+  h1 {
+    margin: 0.5rem;
+    text-align: center;
+  }
 `;
+
 const Article = styled.article`
   border-radius: 1rem;
   margin: 1rem;
@@ -180,8 +190,12 @@ const Categories = styled.div`
     box-shadow: ${({ theme }) => theme.shadows.shadow};
     display: flex;
     li {
-      color: ${({ theme }) => theme.colors.primary1};
       padding-left: 0.5rem;
+      color: ${({ theme }) => theme.colors.primary1};
+      a {
+        color: ${({ theme }) => theme.colors.primary1};
+      }
+
       &:before {
         content: "/";
         display: inline-block;
@@ -203,6 +217,9 @@ const DetailsItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
   p {
     margin: 0;
   }
@@ -215,6 +232,14 @@ const Content = styled.div`
   h2 {
     text-align: center;
     ${({ theme }) => theme.colors.primary1}
+  }
+`;
+const MidContent = styled.div`
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 35% 60%;
+    column-gap: 5%;
+    align-items: start;
   }
 `;
 
@@ -270,10 +295,11 @@ const Tags = styled.div`
     flex-wrap: wrap;
   }
   li {
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     margin: 0.25rem;
     border-radius: 1rem;
     background-color: ${({ theme }) => theme.colors.primary2};
+    color: white;
   }
 `;
 

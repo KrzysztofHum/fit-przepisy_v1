@@ -21,6 +21,7 @@ export default function Footer() {
 }
 
 export const Footerr = styled.footer`
+  margin: 0 auto;
   max-width: 1120px;
   text-align: center;
   display: flex;

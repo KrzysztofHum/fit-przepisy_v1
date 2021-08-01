@@ -20,10 +20,19 @@ export default function Recipe({ recipes = [] }) {
     },
   };
   return (
-    <>
+    <Wrapper>
       {recipes.map((recipe) => {
-        const { id, title, img, carbs, fat, kcal, description, categories, protein } =
-          recipe;
+        const {
+          id,
+          title,
+          img,
+          carbs,
+          fat,
+          kcal,
+          description,
+          categories,
+          protein,
+        } = recipe;
         const tagSlug = slugify(title, { lower: true });
         const pathToImage = getImage(img);
         return (
@@ -64,14 +73,23 @@ export default function Recipe({ recipes = [] }) {
           </Article>
         );
       })}
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
 
 const Article = styled.article`
   border-radius: 1rem;
   margin: 1rem;
   box-shadow: ${({ theme }) => theme.shadows.shadow};
+  @media (min-width: 768px) {
+    max-width: 334px;
+  }
   .img {
     border-radius: 1rem;
   }

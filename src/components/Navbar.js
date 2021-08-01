@@ -32,7 +32,7 @@ export default function Navbar() {
         <HamburgerBtn isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
           <GiHamburgerMenu size={35} />
         </HamburgerBtn>
-        <div>{isOpen ? "" : "Logo"}</div>
+        <div>Logo</div>
         <SocialMedia isOpen={isOpen}>
           <div>
             <ImYoutube2 size={25} />
@@ -43,6 +43,9 @@ export default function Navbar() {
         </SocialMedia>
       </MidNav>
       <SideNav isOpen={isOpen}>
+        <HamburgerBtn1 isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+          <GiHamburgerMenu size={35} />
+        </HamburgerBtn1>
         <ul>
           Kategorie:
           {newCategories.map((category, index) => {
@@ -75,6 +78,7 @@ export default function Navbar() {
 }
 
 const Nav = styled.nav`
+  margin: 0 auto;
   max-width: 1120px;
   /* display: flex;
   align-items: center;
@@ -97,13 +101,10 @@ const HamburgerBtn = styled.div`
   display: flex;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.primary1};
-  transform: ${(props) => (props.isOpen ? "translateX(80vw)" : "none")};
-  transition: ${({ theme }) => theme.animations.transition};
 `;
 
 const SocialMedia = styled.div`
-  display: ${({ isOpen }) => (isOpen ? "none" : "flex")};
-  transition: ${({ theme }) => theme.animations.transition};
+  display: flex;
   align-items: center;
   div {
     margin-left: 1rem;
@@ -117,12 +118,14 @@ const SideNav = styled.div`
   padding: 1rem;
   transform: ${({ isOpen }) =>
     isOpen ? "translateX(0)" : "translateX(-100%)"};
+  opacity: ${({ isOpen }) => (isOpen ? "1" : "0")};
   position: fixed;
   top: 0;
   background-color: ${({ theme }) => theme.colors.lightGrey};
   height: 100%;
   transition: ${({ theme }) => theme.animations.transition};
   width: 80%;
+  max-width: 300px;
   ul {
     font-weight: bold;
     margin: 0;
@@ -137,4 +140,14 @@ const SideNav = styled.div`
 const Links = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.primary2};
+`;
+
+const HamburgerBtn1 = styled.div`
+  display: flex;
+  position: absolute;
+  right: 20px;
+  top: 25px;
+  cursor: pointer;
+  color: ${({ theme }) => theme.colors.primary1};
+  transition: ${({ theme }) => theme.animations.transition};
 `;
