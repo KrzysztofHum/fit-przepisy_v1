@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { Bold, Text } from "../components/Markdown";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
@@ -46,7 +46,11 @@ export default function produkt({ data }) {
         <Categories>
           <ul>
             {categories.map((category, index) => {
-              return <li key={index}>{category}</li>;
+              return (
+                <li key={index}>
+                  <Links to={`przepis-na-${category}`}>{category}</Links>
+                </li>
+              );
             })}
           </ul>
         </Categories>
@@ -108,7 +112,17 @@ export default function produkt({ data }) {
           </div>
         </Content>
       </Article>
-      <div>Tagi</div>
+      <Tags>
+        <ul>
+          {tags.map((tag, index) => {
+            return (
+              <li key={index}>
+                <Links to={`przepis-na-${tag}`}>{tag}</Links>
+              </li>
+            );
+          })}
+        </ul>
+      </Tags>
       <div>Zobacz podobne przepisy</div>
     </Layout>
   );
@@ -222,13 +236,14 @@ const Ingredients = styled.div`
 
 const Instruction = styled.div`
   margin: 1rem;
+  padding-bottom: 1rem;
   h4 {
     margin: 0 0 0 2rem;
     color: ${({ theme }) => theme.colors.primary1};
   }
   li > p {
     margin: 0 0 1rem;
-    padding-left: .25rem;
+    padding-left: 0.25rem;
   }
 `;
 
@@ -246,4 +261,23 @@ const InstructionHeader = styled.div`
   div {
     border-bottom: 1px dashed ${({ theme }) => theme.colors.primary1};
   }
+`;
+
+const Tags = styled.div`
+  margin: 2rem 1rem;
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  li {
+    padding: .5rem 1rem;
+    margin: 0.25rem;
+    border-radius: 1rem;
+    background-color: ${({ theme }) => theme.colors.primary2};
+  }
+`;
+
+const Links = styled(Link)`
+  text-decoration: none;
+  color: white;
 `;
