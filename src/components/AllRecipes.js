@@ -12,6 +12,7 @@ export const query = graphql`
         id
         kcal
         protein
+        categories
         description {
           raw
         }

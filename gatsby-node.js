@@ -44,7 +44,7 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/przepis-na-${categories[0]}/przepis-na-${tagSlug}`,
       component: path.resolve(`src/templates/product-template.js`),
-      content: {
+      context: {
         title: title,
       },
     });

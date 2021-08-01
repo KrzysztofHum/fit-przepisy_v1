@@ -30,6 +30,7 @@ export const query = graphql`
         carbs
         fat
         id
+        categories
         kcal
         protein
         description {

@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { Bold, Text } from "./Markdown";
+import slugify from "slugify";
 
 export default function Recipe({ recipes = [] }) {
   const options = {
@@ -21,18 +22,20 @@ export default function Recipe({ recipes = [] }) {
   return (
     <>
       {recipes.map((recipe) => {
-        const { id, title, img, carbs, fat, kcal, protein } = recipe;
+        const { id, title, img, carbs, fat, kcal, categories, protein } =
+          recipe;
+        const tagSlug = slugify(title, { lower: true });
         const description = recipe.description;
         const pathToImage = getImage(img);
         return (
           <Article key={id}>
             <div>
-              <Links to={title}>
+              <Links to={`/przepis-na-${categories[0]}/przepis-na-${tagSlug}`}>
                 <GatsbyImage className="img" image={pathToImage} alt={title} />
               </Links>
             </div>
             <div>
-              <Links to={title}>
+              <Links to={`/przepis-na-${categories[0]}/przepis-na-${tagSlug}`}>
                 <h3>{title}</h3>
               </Links>
             </div>
