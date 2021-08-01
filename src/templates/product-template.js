@@ -1,25 +1,41 @@
 import { graphql } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
+
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout";
 
-export default function produkt({ data, pageContext }) {
-  const { title } = pageContext;
-  console.log(data);
-  console.log(pageContext);
+export default function produkt({ data }) {
+  const {
+    carbs,
+    categories,
+    fat,
+    id,
+    img,
+    description,
+    ingreddients,
+    instruction,
+    kcal,
+    protein,
+    sercing,
+    tags,
+    title,
+  } = data.allContentfulProducts.nodes[0];
+  console.log(data.allContentfulProducts.nodes[0]);
+  const pathToImage = getImage(img);
   return (
     <Layout>
-      <Wrapper>
+      <Article>
         <div>
-          <StaticImage
-            src="./images/gulasz.jpg"
-            alt="fit przepisy"
-            layout="fullWidth"
-            className="img"
-          ></StaticImage>
+          <GatsbyImage className="img" image={pathToImage} alt={title} />
         </div>
-        <div>Kategorie</div>
+        <Categories>
+          <ul>
+            {categories.map((category, index) => {
+              return <li key={index}>{category}</li>;
+            })}
+          </ul>
+        </Categories>
         <Content>
           <h1>{title}</h1>
           <div>
@@ -28,9 +44,9 @@ export default function produkt({ data, pageContext }) {
             <div>Instrukcja</div>
           </div>
         </Content>
-        <div>Tagi</div>
-        <div>Zobacz podobne przepisy</div>
-      </Wrapper>
+      </Article>
+      <div>Tagi</div>
+      <div>Zobacz podobne przepisy</div>
     </Layout>
   );
 }
@@ -46,6 +62,9 @@ export const query = graphql`
         img {
           gatsbyImageData(layout: FULL_WIDTH, placeholder: TRACED_SVG)
         }
+        description {
+          raw
+        }
         carbs
         title
         categories
@@ -58,5 +77,38 @@ export const query = graphql`
   }
 `;
 
-const Wrapper = styled.div``;
+const Article = styled.article`
+  border-radius: 1rem;
+  margin: 1rem;
+  box-shadow: ${({ theme }) => theme.shadows.shadow};
+  .img {
+    border-radius: 1rem;
+  }
+  p {
+    margin: 1rem;
+  }
+  h3 {
+    text-align: center;
+  }
+`;
+const Categories = styled.div`
+  ul {
+    padding: 0 0.5rem;
+    margin: 0.5rem;
+    background-color: #eff5e8;
+    border-radius: 1rem;
+    box-shadow: ${({ theme }) => theme.shadows.shadow};
+    display: flex;
+    li {
+      color: ${({ theme }) => theme.colors.primary1};
+      padding-left: 0.5rem;
+      &:before {
+        content: "/";
+        display: inline-block;
+        padding-right: 0.5rem;
+        color: #616a72;
+      }
+    }
+  }
+`;
 const Content = styled.div``;

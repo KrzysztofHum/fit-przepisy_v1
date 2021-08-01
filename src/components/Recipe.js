@@ -22,10 +22,9 @@ export default function Recipe({ recipes = [] }) {
   return (
     <>
       {recipes.map((recipe) => {
-        const { id, title, img, carbs, fat, kcal, categories, protein } =
+        const { id, title, img, carbs, fat, kcal, description, categories, protein } =
           recipe;
         const tagSlug = slugify(title, { lower: true });
-        const description = recipe.description;
         const pathToImage = getImage(img);
         return (
           <Article key={id}>
