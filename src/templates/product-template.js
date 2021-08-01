@@ -1,11 +1,24 @@
 import { graphql } from "gatsby";
-
+import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { Bold, Text } from "../components/Markdown";
+import { BLOCKS, MARKS } from "@contentful/rich-text-types";
+import { ImSpoonKnife } from "react-icons/im";
+import { BsDropletFill, BsPeople } from "react-icons/bs";
+import { GiFishEggs, GiSlicedBread } from "react-icons/gi";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout";
 
 export default function produkt({ data }) {
+  const options = {
+    renderMark: {
+      [MARKS.BOLD]: (text) => <Bold>{text}</Bold>,
+    },
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+    },
+  };
   const {
     carbs,
     categories,
@@ -13,11 +26,11 @@ export default function produkt({ data }) {
     id,
     img,
     description,
-    ingreddients,
+    ingredients,
     instruction,
     kcal,
     protein,
-    sercing,
+    serving,
     tags,
     title,
   } = data.allContentfulProducts.nodes[0];
@@ -25,6 +38,7 @@ export default function produkt({ data }) {
   const pathToImage = getImage(img);
   return (
     <Layout>
+      <H1>Jak zrobić fit {title} ?</H1>
       <Article>
         <div>
           <GatsbyImage className="img" image={pathToImage} alt={title} />
@@ -36,12 +50,61 @@ export default function produkt({ data }) {
             })}
           </ul>
         </Categories>
+        <Details>
+          <DetailsItem>
+            <GiFishEggs />
+            <h6>Białko</h6>
+            <p>{protein}</p>
+          </DetailsItem>
+          <DetailsItem>
+            <GiSlicedBread />
+            <h6>Węglowodany</h6>
+            <p>{carbs}</p>
+          </DetailsItem>
+          <DetailsItem>
+            <BsDropletFill />
+            <h6>Tłuszcze</h6>
+            <p>{fat}</p>
+          </DetailsItem>
+          <DetailsItem>
+            <ImSpoonKnife />
+            <h6>Kalorie</h6>
+            <p>{kcal}</p>
+          </DetailsItem>
+          <DetailsItem>
+            <BsPeople />
+            <h6>Porcje</h6>
+            <p>{serving}</p>
+          </DetailsItem>
+        </Details>
         <Content>
-          <h1>{title}</h1>
+          <h2>{title}</h2>
           <div>
-            <div>Opis</div>
-            <div>Składniki</div>
-            <div>Instrukcja</div>
+            <div>{description && renderRichText(description, options)}</div>
+            <Ingredients>
+              <h4>Składniki</h4>
+              <ul>
+                {ingredients.map((item, index) => {
+                  return <li key={index}>{item}</li>;
+                })}
+              </ul>
+            </Ingredients>
+            <Instruction>
+              <h4>Instrukcja</h4>
+              <ul>
+                {instruction.map((item, index) => {
+                  return (
+                    <li key={index}>
+                      <InstructionHeader>
+                        <p>Krok {index + 1}</p>
+                        <div></div>
+                      </InstructionHeader>
+                      <p>{item}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Instruction>
           </div>
         </Content>
       </Article>
@@ -76,7 +139,10 @@ export const query = graphql`
     }
   }
 `;
-
+const H1 = styled.h1`
+  margin: 0.5rem;
+  text-align: center;
+`;
 const Article = styled.article`
   border-radius: 1rem;
   margin: 1rem;
@@ -111,4 +177,73 @@ const Categories = styled.div`
     }
   }
 `;
-const Content = styled.div``;
+const Details = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+`;
+const DetailsItem = styled.div`
+  color: ${({ theme }) => theme.colors.primary1};
+  padding: 0 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p {
+    margin: 0;
+  }
+  h6 {
+    color: black;
+    font-weight: bold;
+  }
+`;
+const Content = styled.div`
+  h2 {
+    text-align: center;
+    ${({ theme }) => theme.colors.primary1}
+  }
+`;
+
+const Ingredients = styled.div`
+  h4 {
+    margin: 0 0 0 2rem;
+    color: ${({ theme }) => theme.colors.primary1};
+  }
+  display: grid;
+  margin: 1rem;
+  ul {
+    margin-top: 0;
+  }
+  li {
+    border-bottom: 1px dashed ${({ theme }) => theme.colors.primary1};
+    padding: 0.75rem 0;
+  }
+`;
+
+const Instruction = styled.div`
+  margin: 1rem;
+  h4 {
+    margin: 0 0 0 2rem;
+    color: ${({ theme }) => theme.colors.primary1};
+  }
+  li > p {
+    margin: 0 0 1rem;
+    padding-left: .25rem;
+  }
+`;
+
+const InstructionHeader = styled.div`
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  p {
+    text-transform: uppercase;
+    font-weight: 600;
+    color: ${({ theme }) => theme.colors.primary1};
+    margin: 0;
+  }
+  div {
+    border-bottom: 1px dashed ${({ theme }) => theme.colors.primary1};
+  }
+`;

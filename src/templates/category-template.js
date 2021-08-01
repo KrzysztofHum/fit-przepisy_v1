@@ -11,7 +11,7 @@ export default function CategoryTemplate({ data, pageContext }) {
   return (
     <Layout>
       <Wrapper>
-        <h2>{pageContext.tag}</h2>
+        <h1>Jak zrobić fit {pageContext.category} ?</h1>
         <div>
           <Recipe recipes={recipes} />
         </div>
@@ -45,7 +45,8 @@ export const query = graphql`
   }
 `;
 const Wrapper = styled.div`
-  h2 {
+  h1 {
+    margin: 0.5rem;
     text-align: center;
   }
 `;
