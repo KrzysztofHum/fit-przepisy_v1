@@ -1,30 +1,6 @@
-// const path = require("path");
-// exports.createPages = async ({ graphql, actions }) => {
-//   const { createPage } = actions;
-//   const result = await graphql(`
-//     query GetRecipes {
-//       allContentfulProducts {
-//         nodes {
-//           tags
-//         }
-//       }
-//     }
-//   `);
-//   console.log(result);
-//   result.data.AllContentfulProducts.nodes.forEach((recipe) => {
-//     recipe.tags.forEach((tag) => {
-//       createPage({
-//         path: `/-przepis-na${tag}`,
-//         component: path.resolve(`src/templates/tag-template.js`),
-//         context: {
-//           tag: tag,
-//         },
-//       });
-//     });
-//   });
-// };
 const path = require("path");
-// const slugify = require("slugify");
+const slugify = require("slugify");
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
@@ -32,6 +8,7 @@ exports.createPages = async ({ graphql, actions }) => {
     query GetRecipes {
       allContentfulProducts {
         nodes {
+          title
           tags
           categories
         }
@@ -40,7 +17,6 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
   result.data.allContentfulProducts.nodes.map((recipe) => {
     recipe.tags.map((tag) => {
-      //   const tagSlug = slugify(tag, { lower: true });
       createPage({
         path: `/przepis-na-${tag}`,
         component: path.resolve(`src/templates/tag-template.js`),
@@ -52,7 +28,6 @@ exports.createPages = async ({ graphql, actions }) => {
   });
   result.data.allContentfulProducts.nodes.map((recipe) => {
     recipe.categories.map((category) => {
-      //   const tagSlug = slugify(tag, { lower: true });
       createPage({
         path: `/przepis-na-${category}`,
         component: path.resolve(`src/templates/category-template.js`),
@@ -60,6 +35,18 @@ exports.createPages = async ({ graphql, actions }) => {
           category: category,
         },
       });
+    });
+  });
+  result.data.allContentfulProducts.nodes.map((recipe) => {
+    const { categories, title } = recipe;
+    const tagSlug = slugify(title, { lower: true });
+
+    createPage({
+      path: `/przepis-na-${categories[0]}/przepis-na-${tagSlug}`,
+      component: path.resolve(`src/templates/product-template.js`),
+      content: {
+        title: title,
+      },
     });
   });
 };
