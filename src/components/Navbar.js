@@ -5,6 +5,7 @@ import { ImYoutube2, ImFacebook2 } from "react-icons/im";
 import styled from "styled-components";
 import setupCategories from "../utils/setupCategories";
 import setupTags from "../utils/setupTags";
+import logo from "../images/FitPrzepisy.svg";
 
 export const query = graphql`
   {
@@ -32,7 +33,9 @@ export default function Navbar() {
         <HamburgerBtn isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
           <GiHamburgerMenu size={35} />
         </HamburgerBtn>
-        <div>Logo</div>
+        <Link to="/">
+          <img src={logo} alt="fit przepisy" />
+        </Link>
         <SocialMedia isOpen={isOpen}>
           <div>
             <ImYoutube2 size={25} />
@@ -89,6 +92,7 @@ const Nav = styled.nav`
 `;
 
 const MidNav = styled.div`
+  background-color: #60cc3903;
   padding: 1rem 1rem 0;
   padding-bottom: 0.5rem;
   display: flex;
@@ -101,6 +105,11 @@ const HamburgerBtn = styled.div`
   display: flex;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.primary1};
+  transition: ${({ theme }) => theme.animations.transition};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary3};
+  }
 `;
 
 const SocialMedia = styled.div`
@@ -140,6 +149,10 @@ const SideNav = styled.div`
 const Links = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.primary2};
+  transition: ${({ theme }) => theme.animations.transition};
+  &:hover {
+    color: black;
+  }
 `;
 
 const HamburgerBtn1 = styled.div`
@@ -150,4 +163,7 @@ const HamburgerBtn1 = styled.div`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.primary1};
   transition: ${({ theme }) => theme.animations.transition};
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary3};
+  }
 `;

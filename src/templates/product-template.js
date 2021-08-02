@@ -194,6 +194,10 @@ const Categories = styled.div`
       color: ${({ theme }) => theme.colors.primary1};
       a {
         color: ${({ theme }) => theme.colors.primary1};
+        transition: ${({ theme }) => theme.animations.transition};
+        &:hover {
+          color: black;
+        }
       }
 
       &:before {
@@ -294,16 +298,18 @@ const Tags = styled.div`
     display: flex;
     flex-wrap: wrap;
   }
-  li {
-    padding: 0.5rem 1rem;
-    margin: 0.25rem;
-    border-radius: 1rem;
-    background-color: ${({ theme }) => theme.colors.primary2};
-    color: white;
-  }
 `;
 
 const Links = styled(Link)`
+  padding: 0.5rem 1rem;
+  margin: 0.25rem;
+  border-radius: 1rem;
+  background-color: ${({ theme }) => theme.colors.primary2};
   text-decoration: none;
   color: white;
+  transition: ${({ theme }) => theme.animations.transition2};
+  &:hover {
+    color: black;
+    background-color: #eff5e8;
+  }
 `;

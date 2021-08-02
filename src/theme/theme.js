@@ -6,6 +6,7 @@ export const theme = {
   colors: {
     primary1: "#94cc39",
     primary2: "#8ac256",
+    primary3: "#679c10",
     lightGrey: "#f8f8f8",
     greyBackground: "#f9f9f9",
     border: "#d4d4d4",
@@ -22,5 +23,6 @@ export const theme = {
   },
   animations: {
     transition: "0.3s ease-in-out all",
+    transition2: "0.5s ease-in-out all",
   },
 };

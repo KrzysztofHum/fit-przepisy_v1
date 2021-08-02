@@ -122,4 +122,8 @@ const DetailsItem = styled.div`
 const Links = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.primary2};
+  transition: ${({ theme }) => theme.animations.transition};
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary3};
+  }
 `;

@@ -26,12 +26,12 @@ module.exports = {
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
-    "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+
     {
-      resolve: "gatsby-plugin-manifest",
+      resolve: "gatsby-plugin-sharp",
       options: {
-        icon: "src/images/icon.png",
+        icon:"./static/favicon.ico",
       },
     },
     {
