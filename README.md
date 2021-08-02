@@ -1,54 +1,21 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby minimal starter
-</h1>
+# Krzysztof Humienny Portfolio
 
-## 🚀 Quick start
+A react news app utilising GatsbyJs and contentful hosted on netlify. https://fit-przepisy_v1.netlify.app/
 
-1.  **Create a Gatsby site.**
+## About the build
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+Besides enjoying the content, I found the Gatsby extensive documentation and support a great resource to use for this project. The idea was to create a quick page where I will post my recipes. The website is mainly used to show my recipes.
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
+## Functionality
 
-2.  **Start developing.**
+###### Sections
 
-    Navigate into your new site’s directory and start it up.
+There are presented my recipes. You can clik for the image and open recipe with preparation tips. You can also search for recipes containing only selected tags.
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+###### Misc
 
-3.  **Open the code and start customizing!**
+By Contentful i can easily add new recipes and tags.
 
-    Your site is now running at http://localhost:8000!
+## Style
 
-    Edit `src/pages/index.js` to see your site update in real-time!
-
-4.  **Learn more**
-
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-
-## 🚀 Quick start (Gatsby Cloud)
-
-Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
-
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal)
+For styling i used styled components which improved the readability of the code. Additionally made my worker easier even though it was only the first project when i use it.
