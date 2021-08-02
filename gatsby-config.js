@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    // siteUrl: "https://www.yourdomain.tld",
+    siteUrl: "https://www.fit-przepisy_v1.tld",
     title: "fit-przepisy",
   },
   plugins: [
@@ -30,7 +30,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-sharp",
       options: {
-        icon:"./static/favicon.ico",
+        icon: "./static/favicon.ico",
       },
     },
     {
