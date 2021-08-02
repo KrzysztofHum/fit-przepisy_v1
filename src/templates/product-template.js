@@ -139,7 +139,6 @@ export const query = graphql`
         kcal
         protein
         fat
-        id
         img {
           gatsbyImageData(layout: FULL_WIDTH, placeholder: TRACED_SVG)
         }
