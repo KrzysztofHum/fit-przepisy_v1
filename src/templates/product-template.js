@@ -297,6 +297,9 @@ const Tags = styled.div`
     display: flex;
     flex-wrap: wrap;
   }
+  li {
+    margin-top: 1rem;
+  }
 `;
 
 const Links = styled(Link)`

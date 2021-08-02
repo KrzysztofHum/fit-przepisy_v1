@@ -1,6 +1,6 @@
 # Krzysztof Humienny Portfolio
 
-A react news app utilising GatsbyJs and contentful hosted on netlify. https://fit-przepisy_v1.netlify.app/
+A react news app utilising GatsbyJs and contentful hosted on netlify. https://fit-przepisy.netlify.app/
 
 ## About the build
 
