@@ -49,7 +49,7 @@ export default function produkt({ data }) {
               {categories.map((category, index) => {
                 return (
                   <li key={index}>
-                    <Link to={`przepis-na-${category}`}>{category}</Link>
+                    <Link to={`/przepis-na-${category}`}>{category}</Link>
                   </li>
                 );
               })}
@@ -120,7 +120,7 @@ export default function produkt({ data }) {
             {tags.map((tag, index) => {
               return (
                 <li key={index}>
-                  <Links to={`przepis-na-${tag}`}>{tag}</Links>
+                  <Links to={`/przepis-na-${tag}`}>{tag}</Links>
                 </li>
               );
             })}
