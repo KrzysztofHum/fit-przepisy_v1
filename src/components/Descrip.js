@@ -14,7 +14,6 @@ export default function Descrip({ desc = [] }) {
       [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
     },
   };
-  console.log(desc)
   return (
 	  <> 
 		{desc.length >= 1 ? (

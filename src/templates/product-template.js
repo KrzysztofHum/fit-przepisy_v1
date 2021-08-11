@@ -9,6 +9,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout";
+import Descrip from "../components/Descrip";
 
 export default function produkt({ data }) {
   const options = {
@@ -33,6 +34,8 @@ export default function produkt({ data }) {
     tags,
     title,
   } = data.allContentfulProducts.nodes[0];
+  const desc = data.allContentfulDescription.nodes;
+
   const pathToImage = getImage(img);
   return (
     <Layout>
@@ -125,6 +128,9 @@ export default function produkt({ data }) {
           </ul>
         </Tags>
         <div>Zobacz podobne przepisy</div>
+        <div>
+          <Descrip desc={desc} />
+        </div>
       </Wrapper>
     </Layout>
   );
@@ -150,6 +156,15 @@ export const query = graphql`
         ingredients
         serving
         tags
+      }
+    }
+    allContentfulDescription(filter: { title: { eq: $title } }) {
+      nodes {
+        id
+        title
+        description {
+          raw
+        }
       }
     }
   }
