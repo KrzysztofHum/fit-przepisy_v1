@@ -1,9 +1,41 @@
+import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import styled from "styled-components";
+import { BLOCKS, MARKS } from "@contentful/rich-text-types";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { Bold, Text } from "./Markdown";
+
+export const query = graphql`
+  {
+    allContentfulDescription {
+      nodes {
+        description {
+          raw
+        }
+        title
+      }
+    }
+  }
+`;
 
 export default function Description() {
+    const options = {
+      renderMark: {
+        [MARKS.BOLD]: (text) => <Bold>{text}</Bold>,
+      },
+      renderNode: {
+        [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+      },
+    };
+  const {
+    allContentfulDescription: { nodes: recipes },
+  } = useStaticQuery(query);
+  const description = recipes[0].description;
+  console.log(description);
   return (
     <Wrapper>
+      <h1>{recipes[0].title}</h1>
+      <div>{description && renderRichText(description, options)}</div>
       <h1>Fit Przepisy</h1>
       <div>
         <p>
@@ -45,6 +77,7 @@ export default function Description() {
     </Wrapper>
   );
 }
+
 
 export const Wrapper = styled.div`
   margin: 1rem;

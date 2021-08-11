@@ -23,7 +23,6 @@ export default function produkt({ data }) {
     carbs,
     categories,
     fat,
-    id,
     img,
     description,
     ingredients,
@@ -34,7 +33,6 @@ export default function produkt({ data }) {
     tags,
     title,
   } = data.allContentfulProducts.nodes[0];
-  console.log(data.allContentfulProducts.nodes[0]);
   const pathToImage = getImage(img);
   return (
     <Layout>
@@ -156,6 +154,8 @@ export const query = graphql`
     }
   }
 `;
+
+
 
 const Wrapper = styled.div`
   margin: 0 auto;
