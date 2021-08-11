@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 import Layout from "../components/Layout";
 import Recipe from "../components/Recipe";
 import styled from "styled-components";
-import Descrip from "../components/Descrip";
+import Description from "../components/Description";
 
 export default function TagTemplate({ data, pageContext }) {
   const recipes = data.allContentfulProducts.nodes;
@@ -18,7 +18,7 @@ export default function TagTemplate({ data, pageContext }) {
           <Recipe recipes={recipes} />
         </div>
         <div>
-          <Descrip desc={desc} />
+          <Description desc={desc} />
         </div>
       </Wrapper>
     </Layout>

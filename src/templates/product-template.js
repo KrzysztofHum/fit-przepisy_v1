@@ -9,7 +9,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout";
-import Descrip from "../components/Descrip";
+import Description from "../components/Description";
 
 export default function produkt({ data }) {
   const options = {
@@ -129,7 +129,7 @@ export default function produkt({ data }) {
         </Tags>
         <div>Zobacz podobne przepisy</div>
         <div>
-          <Descrip desc={desc} />
+          <Description desc={desc} />
         </div>
       </Wrapper>
     </Layout>

@@ -1,44 +1,39 @@
-import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { Bold, Text } from "./Markdown";
+import DefaultDescription from "./DefaultDescription";
 
-export const query = graphql`
-  {
-    allContentfulDescription(filter: { title: { eq: "Fit Przepisy" } }) {
-      nodes {
-        description {
-          raw
-        }
-        title
-      }
-    }
-  }
-`;
-
-export default function Description() {
-    const options = {
-      renderMark: {
-        [MARKS.BOLD]: (text) => <Bold>{text}</Bold>,
-      },
-      renderNode: {
-        [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
-      },
-    };
-  const {
-    allContentfulDescription: { nodes: recipes },
-  } = useStaticQuery(query);
-  const {description, title} = recipes[0];
+export default function Description({ desc = [] }) {
+  const options = {
+    renderMark: {
+      [MARKS.BOLD]: (text) => <Bold>{text}</Bold>,
+    },
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+    },
+  };
   return (
-    <Wrapper>
-      <h1>{title}</h1>
-      <div>{description && renderRichText(description, options)}</div>
-    </Wrapper>
+    <>
+      {desc.length >= 1 ? (
+        <Wrapper>
+          {desc.map((des) => {
+            const { description, title, id } = des;
+            return (
+              <div key={id}>
+                <h2>{title}</h2>
+                <div>{description && renderRichText(description, options)}</div>
+              </div>
+            );
+          })}
+        </Wrapper>
+      ) : (
+        <DefaultDescription />
+      )}
+    </>
   );
 }
-
 
 export const Wrapper = styled.div`
   margin: 1rem;
