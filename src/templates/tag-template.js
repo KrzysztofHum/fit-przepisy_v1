@@ -10,8 +10,6 @@ import SEO from "../components/SEO";
 export default function TagTemplate({ data, pageContext }) {
   const recipes = data.allContentfulProducts.nodes;
   const desc = data.allContentfulDescription.nodes;
-  const { title } = recipes[0];
-  console.log(recipes)
 
   return (
     <Layout>
