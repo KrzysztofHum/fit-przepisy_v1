@@ -3,10 +3,12 @@ import styled from "styled-components";
 import AllRecipes from "../components/AllRecipes";
 import Description from "../components/Description";
 import Layout from "../components/Layout";
+import SEO from '../components/SEO'
 
 export default function Home() {
   return (
     <Layout>
+      <SEO/>
       <Main>
         <AllRecipes />
         <Description />
