@@ -5,12 +5,17 @@ import Layout from "../components/Layout";
 import Recipe from "../components/Recipe";
 import styled from "styled-components";
 import Description from "../components/Description";
+import SEO from "../components/SEO";
 
 export default function CategoryTemplate({ data, pageContext }) {
   const recipes = data.allContentfulProducts.nodes;
   const desc = data.allContentfulDescription.nodes;
   return (
     <Layout>
+      <SEO
+        title={`Fit ${pageContext.category}`}
+        description={`Smaczne fit przepisy na ${pageContext.category}, tanie i szybkie dietetyczne przepisy`}
+      />
       <Wrapper>
         <h1>Jak zrobić fit {pageContext.category} ?</h1>
         <div>

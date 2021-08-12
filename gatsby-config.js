@@ -9,12 +9,6 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: "gatsby-plugin-html-attributes",
-      options: {
-        lang: "pl-PL",
-      },
-    },
-    {
       resolve: "gatsby-source-contentful",
       options: {
         accessToken: process.env.CONTENTFUL_API_KEY,

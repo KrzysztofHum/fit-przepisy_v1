@@ -10,6 +10,7 @@ import React from "react";
 import styled from "styled-components";
 import Layout from "../components/Layout";
 import Description from "../components/Description";
+import SEO from "../components/SEO";
 
 export default function produkt({ data }) {
   const options = {
@@ -39,6 +40,10 @@ export default function produkt({ data }) {
   const pathToImage = getImage(img);
   return (
     <Layout>
+      <SEO
+        title={`Fit ${title}`}
+        description={`Fit przepis na ${title}, tanie i szybkie dietetyczne przepisy`}
+      />
       <Wrapper>
         <h1>Jak zrobić fit {title} ?</h1>
         <Article>

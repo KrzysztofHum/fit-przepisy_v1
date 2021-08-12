@@ -1,9 +1,13 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { useStaticQuery, graphql } from "gatsby";
 
-const SEO = () => {
-  return <Helmet title="Fit Przepisy"></Helmet>;
+const SEO = ({ title, description }) => {
+  return (
+    <Helmet htmlAttributes={{lang:"pl-PL"}}
+      title={`Fit Przepisy | ${title}`}
+      meta={[{ name: `description`, content: description }]}
+    ></Helmet>
+  );
 };
 
 export default SEO;

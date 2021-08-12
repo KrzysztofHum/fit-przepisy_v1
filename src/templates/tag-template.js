@@ -5,13 +5,21 @@ import Layout from "../components/Layout";
 import Recipe from "../components/Recipe";
 import styled from "styled-components";
 import Description from "../components/Description";
+import SEO from "../components/SEO";
 
 export default function TagTemplate({ data, pageContext }) {
   const recipes = data.allContentfulProducts.nodes;
   const desc = data.allContentfulDescription.nodes;
+  const { title } = recipes[0];
+  console.log(recipes)
 
   return (
     <Layout>
+      <SEO
+        title={`Fit ${pageContext.tag}`}
+        description={`Smaczne fit przepisy na ${pageContext.tag}, tanie i szybkie dietetyczne przepisy`}
+      />
+
       <Wrapper>
         <h1>Jak zrobić fit {pageContext.tag} ?</h1>
         <div>

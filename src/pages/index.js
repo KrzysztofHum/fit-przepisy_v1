@@ -8,7 +8,7 @@ import SEO from '../components/SEO'
 export default function Home() {
   return (
     <Layout>
-      <SEO/>
+      <SEO title="" description='Fit przepisy, tanie i szybkie dietetyczne przepisy'/>
       <Main>
         <AllRecipes />
         <Description />
