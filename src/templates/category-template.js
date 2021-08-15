@@ -14,10 +14,10 @@ export default function CategoryTemplate({ data, pageContext }) {
     <Layout>
       <SEO
         title={`Fit ${pageContext.category}`}
-        description={`Smaczne fit przepisy na ${pageContext.category}, tanie i szybkie dietetyczne przepisy`}
+        description={`Smaczne fit przepisy na ${pageContext.category}, tanie i szybkie dietetyczne przepisy na ${pageContext.category}`}
       />
       <Wrapper>
-        <h1>Jak zrobić fit {pageContext.category} ?</h1>
+        <h1>{pageContext.category} najlepsze fit przepisy</h1>
         <div>
           <Recipe recipes={recipes} />
         </div>

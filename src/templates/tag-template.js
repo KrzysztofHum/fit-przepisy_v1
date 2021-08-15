@@ -15,11 +15,11 @@ export default function TagTemplate({ data, pageContext }) {
     <Layout>
       <SEO
         title={`Fit ${pageContext.tag}`}
-        description={`Smaczne fit przepisy na ${pageContext.tag}, tanie i szybkie dietetyczne przepisy`}
+        description={`${pageContext.tag} - najlepsze fit przepisy, tanie i szybkie dietetyczne przepisy na ${pageContext.tag}`}
       />
 
       <Wrapper>
-        <h1>Jak zrobić fit {pageContext.tag} ?</h1>
+        <h1>{pageContext.tag} - najlepsze fit przepisy</h1>
         <div>
           <Recipe recipes={recipes} />
         </div>

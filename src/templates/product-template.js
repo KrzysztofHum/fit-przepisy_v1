@@ -42,10 +42,10 @@ export default function produkt({ data }) {
     <Layout>
       <SEO
         title={`Fit ${title}`}
-        description={`Fit przepis na ${title}, tanie i szybkie dietetyczne przepisy`}
+        description={`Fit przepis na ${title}, tanie i szybkie dietetyczne przepisy na ${title}`}
       />
       <Wrapper>
-        <h1>Jak zrobić fit {title} ?</h1>
+        <h1>{title} najlepszy fit przepis</h1>
         <Article>
           <div>
             <GatsbyImage className="img" image={pathToImage} alt={title} />
